@@ -5,15 +5,15 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('get', function (\App\Libraries\GoogleDirectory\Users $user, \Illuminate\Http\Request $request) use ($router) {
-    return $user->get($request->only('email'));
+    return $user->get($request->get('email'));
 });
 
 $router->delete('delete', function (\App\Libraries\GoogleDirectory\Users $user, \Illuminate\Http\Request $request) use ($router) {
-    return $user->delete($request->only('email'));
+    return $user->delete($request->get('email'));
 });
 
 $router->patch('reset', function (\App\Libraries\GoogleDirectory\Users $user, \Illuminate\Http\Request $request) use ($router) {
-    return $user->passwordReset($request->only('email'), $request->only('new_password'), $request->only('change'), $request->only('random'));
+    return $user->passwordReset($request->get('email'), $request->get('new_password'), $request->get('change'), $request->get('random'));
 });
 
 $router->post('store', function (\App\Libraries\GoogleDirectory\Users $user, \Illuminate\Http\Request $request) use ($router) {
